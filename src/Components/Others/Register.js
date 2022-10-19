@@ -1,16 +1,18 @@
 import React, { useContext, useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
 import {FcGoogle} from 'react-icons/fc'
 import {FaFacebook} from 'react-icons/fa'
 import { AuthContext } from '../../Layouts/Auth';
 
 
 const Register = () => {
-    let {createUser} = useContext(AuthContext)
+    let {createUser, setUser} = useContext(AuthContext)
     let [emailErr, setEmailErr] = useState('');
     let [passwordErr, setPasswordErr] = useState('');
-
-
+    const navigate = useNavigate();
+    let fromCurrent = useLocation();
+    let from = fromCurrent.state?.redirectTo || '/';
+    console.log(from);
     // log in by email and password
     let createNewUserByMail = (e) => {
         e.preventDefault();
@@ -23,9 +25,12 @@ const Register = () => {
 
         createUser(email, password)
             .then(res => {
-                console.log(res.user)
+                setUser(res.user)
+                navigate(from, {replace: true})
             })
-            .catch(err => alert(err.code,' ', err.message))
+            .catch(err => 
+                alert(err.code.replaceAll('auth/','').replaceAll('-',' ').toUpperCase())                
+            )
         
         setEmailErr('');
         setPasswordErr('');
@@ -33,14 +38,6 @@ const Register = () => {
     }
 
 
-    // log in by google pop up
-    let logInByGoogle = () => {
-        
-    }
-
-    //log in by facebook pop up
-    let logInByFacebook = () => {
-    }
 
     return (
         <div>
@@ -59,7 +56,7 @@ const Register = () => {
                 {passwordErr && <p className='text-error text-xl'>{passwordErr}</p>}
                 <div className='flex justify-between'>
                     <button type='submit' className='btn btn-info'>Register</button>
-                    <Link to='/login'>
+                    <Link to='/login' state={{redirectTo: from}}>
                         <button className='btn btn-success btn-outline'>Old User?</button>
                     </Link>
                 </div>

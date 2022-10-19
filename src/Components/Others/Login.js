@@ -7,8 +7,8 @@ import { AuthContext } from '../../Layouts/Auth';
 const Login = () => {
     let {logIn, setUser, googleLogin} = useContext(AuthContext)
     const navigate = useNavigate();
-    let from = useLocation();
-    from = from.state?.pathname || '/';
+    let fromCurrent = useLocation();
+    let from = fromCurrent.state?.redirectTo || '/';
 
     // log in by email and password
     let logInByEmail = (e) => {
@@ -56,7 +56,7 @@ const Login = () => {
                 <input type="password" name='password' placeholder="Password please" className="input input-bordered input-secondary w-full my-5" required />
                 <div className='flex justify-between'>
                     <button type='submit' className='btn btn-success '>Log In</button>
-                    <Link to='/register'>
+                    <Link to='/register' state={{redirectTo: from}}>
                         <button className='btn btn-outline btn-info '>New User?</button>
                     </Link>
                 </div>

@@ -12,7 +12,7 @@ const Private = ({children}) => {
     if( user )
         return children
     else
-        return <Navigate to='/login' state={location} replace></Navigate>
+        return <Navigate to='/login' state={{redirectTo: location.pathname}} replace></Navigate>
 };
 
 export default Private;
