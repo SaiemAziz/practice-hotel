@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Layouts/Auth";
 
-const Header = () => {
+const Header = ({thm, setThm}) => {
     let {user, setUser, logOut} = useContext(AuthContext)
 
     let logOutClicked = () => {
@@ -42,6 +42,13 @@ const Header = () => {
             <li>
               <Link to='/register'>Register</Link>
             </li>
+            <div className="rounded-2xl" data-theme={!thm? 'coffee' : 'wireframe'}>
+              {
+                thm ? 
+                <p className='cursor-pointer text-left py-2 pl-4' onClick={()=> setThm(!thm)}>Light</p> :
+                <p className='cursor-pointer text-left py-2 pl-4' onClick={()=> setThm(!thm)}>Dark</p>
+              }
+            </div>
           </ul>
         </div>
       </div>

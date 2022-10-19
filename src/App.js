@@ -8,18 +8,12 @@ function App() {
   return (
     <div className="App min-h-screen m-0" data-theme={thm? 'coffee': 'wireframe'}>
       <div className='max-w-5xl mx-auto'>
-        <Header />
+        <Header thm={thm} setThm={setThm} />
         <p className='mt-6'></p>
         <Outlet />
       </div>
 
-      <div className='fixed bottom-5 right-10 rounded-xl bg-transparent z-50' data-theme={!thm? 'coffee' : 'wireframe'}>
-        {
-          thm ? 
-          <button className='btn btn-circle p-7 py-0' onClick={()=> setThm(!thm)}>Light</button> :
-          <button className='btn btn-circle p-7 py-0' onClick={()=> setThm(!thm)}>Dark</button>
-        }
-      </div>
+      
     </div>
   );
 }
