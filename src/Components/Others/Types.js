@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Types = () => {
     return (
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-5 gap-3 px-5'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-5 gap-3 px-5'>
            <div className="col card bg-base-100 hover:shadow-xl hover:shadow-black image-full">
                 <figure><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Room" /></figure>
                 <div className="card-body">
