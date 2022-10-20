@@ -7,7 +7,7 @@ const Private = ({children}) => {
     let location = useLocation()
 
     if(loading)
-        return;
+        return <p>Loading....</p>;
 
     if( user )
         return children

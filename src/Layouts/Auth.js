@@ -24,7 +24,6 @@ const Auth = ({children}) => {
     },[])
 
 
-
     // create new user by email and password
     let createUser = (email, password) => {
         setLoading(true);
