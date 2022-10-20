@@ -1,15 +1,14 @@
 import React, { useContext, useState } from 'react';
-import {Link, useNavigate, useLocation} from 'react-router-dom'
+import {Link, useNavigate, useLocation, redirect} from 'react-router-dom'
 import {FcGoogle} from 'react-icons/fc'
 import {FaFacebook} from 'react-icons/fa'
 import { AuthContext } from '../../Layouts/Auth';
 
 const Login = () => {
-    let {logIn, setUser, googleLogin} = useContext(AuthContext)
+    let {logIn, setUser, redirect, googleLogin} = useContext(AuthContext)
     const navigate = useNavigate();
-    let fromCurrent = useLocation();
-    let from = fromCurrent.state?.redirectTo || '/';
-
+    let from = redirect || '/';
+    console.log(from);
     // log in by email and password
     let logInByEmail = (e) => {
         e.preventDefault();
@@ -56,7 +55,7 @@ const Login = () => {
                 <input type="password" name='password' placeholder="Password please" className="input input-bordered input-secondary w-full my-5" required />
                 <div className='flex justify-between'>
                     <button type='submit' className='btn btn-success '>Log In</button>
-                    <Link to='/register' state={{redirectTo: from}}>
+                    <Link to='/register'>
                         <button className='btn btn-outline btn-info '>New User?</button>
                     </Link>
                 </div>

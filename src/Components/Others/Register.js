@@ -6,12 +6,11 @@ import { AuthContext } from '../../Layouts/Auth';
 
 
 const Register = () => {
-    let {createUser, setUser} = useContext(AuthContext)
+    let {createUser, setUser, redirect} = useContext(AuthContext)
     let [emailErr, setEmailErr] = useState('');
     let [passwordErr, setPasswordErr] = useState('');
     const navigate = useNavigate();
-    let fromCurrent = useLocation();
-    let from = fromCurrent.state?.redirectTo || '/';
+    let from = redirect || '/';
     console.log(from);
     // log in by email and password
     let createNewUserByMail = (e) => {
@@ -42,7 +41,7 @@ const Register = () => {
     return (
         <div>
             <h1 className='text-4xl mt-10 text-info'>Please Register</h1>
-            <form  className='text-left max-w-lg mx-auto my-10 bg-base-300 rounded-2xl p-5' onSubmit={createNewUserByMail}>
+            <form  className='text-left max-w-lg mx-auto py-10 bg-base-300 rounded-2xl p-5' onSubmit={createNewUserByMail}>
                 <p>Name</p>
                 <input type="name" name='name' placeholder="Name please" className="input input-bordered input-secondary w-full my-5" required />
                 {emailErr && <p className='text-error text-xl'>{emailErr}</p>}

@@ -9,6 +9,7 @@ const Auth = ({children}) => {
     let [user, setUser] = useState(null)
     let googleProvider = new GoogleAuthProvider()
     let [loading, setLoading] = useState(true)
+    let [redirect, setRedirect] = useState(null);
 
     // fetch user if logged in from server
     useEffect(() => {
@@ -54,7 +55,9 @@ const Auth = ({children}) => {
         logOut, 
         user, 
         setUser, 
-        googleLogin
+        googleLogin,
+        redirect, 
+        setRedirect,
     }
 
     return (
